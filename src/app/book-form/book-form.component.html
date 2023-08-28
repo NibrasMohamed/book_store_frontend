@@ -1,1 +1,26 @@
-<p>book-form works!</p>
+<form [formGroup]="bookForm" class="book-form">
+    <div class="form-group">
+        <label for="name">Book Name</label>
+        <input type="text" id="name" formControlName="name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="author_id">Author</label>
+        <select id="author_id" formControlName="author_id" required style="width: 100%;">
+            <option value="" disabled>Select an author</option>
+            <option *ngFor="let author of authors" [value]="author.id">{{ author.name }}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="published_date">Published Date</label>
+        <input type="date" id="published_date" formControlName="published_date" required>
+    </div>
+
+    <div class="form-group">
+        <label for="image">Book Cover Image (optional)</label>
+        <input type="file" id="image" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+
+    <button type="submit" (click)="submitForm()">Add Book</button>
+</form>

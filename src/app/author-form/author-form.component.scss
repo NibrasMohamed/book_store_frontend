@@ -1,0 +1,27 @@
+.author-form {
+    max-width: 400px;
+    margin: 0 auto;
+  
+    label {
+      display: block;
+      font-weight: bold;
+    }
+  
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+  
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  }
+  

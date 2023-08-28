@@ -1,1 +1,7 @@
-<p>author-form works!</p>
+<form [formGroup]="authorForm" class="author-form" (ngSubmit)="submitForm()">
+    <div class="form-group">
+        <label for="name">Author Name</label>
+        <input type="text" id="name" formControlName="name" required>
+    </div>
+    <button type="submit">Add Author</button>
+</form>

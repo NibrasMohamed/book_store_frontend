@@ -1,1 +1,11 @@
-<p>book-list works!</p>
+<!-- book-list.component.html -->
+
+<div class="book-card" *ngFor="let book of books">
+    <img [src]="book.image_path" alt="{{ book.name }}">
+    <div class="book-details">
+      <h4>{{ book.name }}</h4>
+      <p>Author: {{ book.author }}</p>
+      <p>Published Date: {{ book.published_date }}</p>
+    </div>
+  </div>
+  

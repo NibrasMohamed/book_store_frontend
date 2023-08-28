@@ -17,4 +17,8 @@ export class AuthorService {
     return this.http.get<CommonResponse<Author[]>>(this.apiUrl);
   }
 
+  addAuthor(authorData: any): Observable<Author> {
+    return this.http.post<Author>(this.apiUrl, authorData);
+  }
+
 }
