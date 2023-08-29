@@ -1,8 +1,6 @@
-
-<p>list</p>
-<div *ngFor="let author of authors">
-    <div>
-        <h3>{{ author.name }}</h3>
-        <p>{{ author.created_at }}</p>
-    </div>
-</div>
+<ul class="author-list">
+    <li class="author-list-item" *ngFor="let author of authors">
+        <span class="author-name">{{ author.name }}</span>
+        <span> {{ author.created_at }}</span>
+    </li>
+</ul>

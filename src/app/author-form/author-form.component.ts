@@ -22,7 +22,7 @@ export class AuthorFormComponent {
     if (this.authorForm.valid) {
       const formData = this.authorForm.value;
       this.authorService.addAuthor(formData).subscribe(response => {
-        // Handle the response (e.g., show a success message)
+      
       });
     }
   }

@@ -1,0 +1,25 @@
+.author-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .author-list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .author-list-item:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .author-name {
+    flex: 1;
+    font-weight: bold;
+  }
+  
+  /* Add more styles as needed */
+  

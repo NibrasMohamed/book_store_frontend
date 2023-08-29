@@ -12,7 +12,7 @@ export class BookListComponent {
    constructor(private bookService: BookService){}
 
    ngOnInit():any{
-    this.bookService.getBooks().subscribe((data)=>{
+    this.bookService.getBooks('').subscribe((data)=>{
       this.books = data.data;
     })
    }

@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CommonResponse } from './shared/common-response';
 import { Author } from './author';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorService {
 
-  private apiUrl = 'http://bookstore.local/api/authors'; // Replace with your API URL
+  private apiUrl = environment.apiUrl+'authors';
 
   constructor(private http: HttpClient) { }
 
