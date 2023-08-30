@@ -10,15 +10,19 @@ import { environment } from 'src/environments/environment';
 })
 export class BookService {
 
-  private apiUrl = environment.apiUrl+'books';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
   getBooks(search: string): Observable<CommonResponse<Book[]>>{
-    return this.http.get<CommonResponse<Book[]>>(this.apiUrl+'?search='+search);
+    return this.http.get<CommonResponse<Book[]>>(`${this.apiUrl}get-books?search=${search}`);
   }
 
   addBook(formData: FormData): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, formData);
+    return this.http.post(`${this.apiUrl}books`, formData);
+  }
+
+  getAuthorBooks(user_id: number): Observable<any>{
+    return this.http.get(`${this.apiUrl}/author-books/${user_id}`);
   }
 }

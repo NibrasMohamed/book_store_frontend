@@ -1,9 +1,11 @@
 import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
-import { AuthService } from '../auth-service.service';
+import { AuthService } from '../auth.service';
+
 
 export const roleGuard: CanActivateFn = (route, state) => {
   const auth = inject(AuthService);
+
   const user_role = localStorage.getItem('role');
   const allowed_role =  route.data['roles'];
 

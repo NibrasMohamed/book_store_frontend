@@ -1,1 +1,25 @@
-<p>books-table works!</p>
+<div class="container">
+    <div>
+        <!-- Add Book Button -->
+        <a class="btn btn-primary" [routerLink]="['/books/add']">Add Book</a>
+    </div>
+    <h2>Your Books</h2>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Published Date</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of books">
+                <td>{{ book.name }}</td>
+                <td>{{ book.published_date }}</td>
+                <td>
+                    <a [routerLink]="['/edit-book', book.id]">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

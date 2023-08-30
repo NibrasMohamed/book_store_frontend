@@ -1,4 +1,12 @@
-<!-- book-list.component.html -->
+<div class="search-container">
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="Search by book name or author..."
+    (keyup.enter)="searchBooks()"
+  />
+  <button (click)="searchBooks()">Search</button>
+</div>
 
 <div class="book-card" *ngFor="let book of books">
     <img [src]="storage_path+book.image_path" alt="{{ book.name }}">

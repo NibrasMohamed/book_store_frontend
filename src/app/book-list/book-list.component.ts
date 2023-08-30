@@ -10,13 +10,20 @@ import { environment } from 'src/environments/environment';
 export class BookListComponent {
    books: Book[] = [];
    storage_path: string =environment.storage_url;
-   private apiUrl = environment.apiUrl;
+   searchText: string = '';
+
    constructor(private bookService: BookService){}
 
    ngOnInit():any{
-    this.bookService.getBooks('').subscribe((data)=>{
+      this.getBooks()
+   }
+
+   getBooks(){
+    this.bookService.getBooks(this.searchText).subscribe((data)=>{
       this.books = data.data;
-      // this.storage_path = this.apiUrl+'storage/'
     })
    }
+   searchBooks() {
+      this.getBooks();
+    }
 }

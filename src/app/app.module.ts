@@ -13,6 +13,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { BooksTableComponent } from './books-table/books-table.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { BooksTableComponent } from './books-table/books-table.component';
     LoginComponent,
     RegistrationComponent,
     BooksTableComponent,
+    HomeComponent,
   ],
   imports: [
     FormsModule,

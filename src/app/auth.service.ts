@@ -35,9 +35,17 @@ export class AuthService {
 
   setUSer(user: any){
     this.user = user;
+    console.log('[this.user]', this.user);
+    
   }
 
   getUser(): any{
+    console.log(this.user);
+    
     return this.user
+  }
+
+  getUserRole(): any{
+    return localStorage.getItem('role');
   }
 }

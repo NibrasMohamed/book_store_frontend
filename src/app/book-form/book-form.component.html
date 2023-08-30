@@ -5,14 +5,6 @@
     </div>
 
     <div class="form-group">
-        <label for="author_id">Author</label>
-        <select id="author_id" formControlName="author_id" required style="width: 100%;">
-            <option value="" disabled>Select an author</option>
-            <option *ngFor="let author of authors" [value]="author.id">{{ author.name }}</option>
-        </select>
-    </div>
-
-    <div class="form-group">
         <label for="published_date">Published Date</label>
         <input type="date" id="published_date" formControlName="published_date" required>
     </div>
