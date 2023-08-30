@@ -46,3 +46,7 @@ The application provides the following features:
 
 Make sure to configure the `environment.ts` and `environment.prod.ts` files with the appropriate backend API URL.
 
+## Note
+
+If any errors while installing dependencies please update the `node package manage`
+
