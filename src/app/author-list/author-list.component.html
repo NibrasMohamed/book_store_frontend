@@ -1,6 +1,32 @@
-<ul class="author-list">
-    <li class="author-list-item" *ngFor="let author of authors">
-        <span class="author-name">{{ author.name }}</span>
-        <span> {{ author.created_at }}</span>
-    </li>
-</ul>
+<!-- author-list.component.html -->
+
+<div class="container">
+    <h2>Author List</h2>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+          <!-- Add more columns as needed -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let author of authors">
+          <td>{{ author.name }}</td>
+          <td>
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                [(ngModel)]="author.status"
+                (ngModelChange)="toggleAuthorStatus(author)"
+              />
+              <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+            </div>
+          </td>
+          <!-- Add more cells for additional columns -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

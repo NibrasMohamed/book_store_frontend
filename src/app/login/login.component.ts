@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error: string = '';
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -39,7 +40,9 @@ export class LoginComponent implements OnInit {
         if (response.status == 'success') {
           console.log('Login successful', response.data);
           localStorage.setItem('token', response.data.token);
-          localStorage.setItem('user', response.data.user);
+          localStorage.setItem('role', response.data.role[0].name);
+          this.authService.setUSer(response.user);
+          this.router.navigate(['home']);
         }
       }, (error) => {
         this.error = "Please Check the Credentails"

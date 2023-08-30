@@ -7,15 +7,15 @@ import { BookFormComponent } from './book-form/book-form.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './shared/auth.guard';
+import { roleGuard } from './shared/role.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo:'/home', pathMatch: 'full'},
-  // { path: '', redirectTo: '/authors', pathMatch: 'full' },
-  { path: 'home', component: AuthorListComponent },
-  { path: 'authors', component: AuthorListComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: BookListComponent },
+  { path: 'authors', component: AuthorListComponent, canActivate: [authGuard, roleGuard] , data: { roles:['admin']}},
   { path: 'books', component: BookListComponent },
-  { path: 'authors/add', component: AuthorFormComponent, canActivate: [authGuard] },
-  { path: 'books/add', component: BookFormComponent },
+  { path: 'authors/add', component: AuthorFormComponent, canActivate: [authGuard, roleGuard] , data: { role:'admin'}},
+  { path: 'books/add', component: BookFormComponent, canActivate: [authGuard, roleGuard] , data: { roles:['author', 'admin']}},
   { path: 'register', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
 ];

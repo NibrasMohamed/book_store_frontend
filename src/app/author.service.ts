@@ -22,4 +22,8 @@ export class AuthorService {
     return this.http.post<Author>(this.apiUrl, authorData);
   }
 
+  updateAuthorStatus(id: number, status:boolean){
+    return this.http.post(this.apiUrl+`/change-status/${id}`, {status: status});
+  }
+
 }

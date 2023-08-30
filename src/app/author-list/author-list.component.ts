@@ -29,5 +29,20 @@ export class AuthorListComponent {
       }
     });
   }
+  
+  toggleAuthorStatus(author: any): void {
+    this.authorService.updateAuthorStatus(author.id, author.status).subscribe(
+      (response: any) => {
+        if (response.status === 'success') {
+          alert('Author status succsfully updated');
+        } else {
+          alert('Status Update Failed');
+        }
+      },
+      (error: any) => {
+        //
+      }
+    );
+  }
 
 }
