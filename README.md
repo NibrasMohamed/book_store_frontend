@@ -1,27 +1,48 @@
-# Bookstore
+# Angular Book Store Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+This is the frontend application for the Book Store, built with Angular.
 
-## Development server
+## Installation and Setup
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Clone the repository:
 
-## Code scaffolding
+- `git clone` https://github.com/NibrasMohamed/book_store_frontend.git
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Navigate to the project directory:
 
-## Build
+- `cd book-store-frontend`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. Install the Node.js dependencies:
 
-## Running unit tests
+- `npm install`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. Configure Environment Files:
 
-## Running end-to-end tests
+- Create a copy of the `src/environments/environment.ts.example` file and rename it to `environment.ts`. 
+- Similarly, create a copy of `src/environments/environment.prod.ts.example` and rename it to `environment.prod.ts`. 
+- Update the API URL in both environment files to match your backend API endpoint.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+5. Build the application:
 
-## Further help
+- `ng build`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+6. Start the Angular development server:
+
+- `ng serve`
+
+7. Open your browser and navigate to `http://localhost:4200/` to access the application.
+
+## Usage
+
+The application provides the following features:
+
+- Register and login as a user.
+- View a list of authors and their books.
+- Search for books by title or author.
+- Add new books if you are an author.
+- Edit and delete books you have added.
+
+## Configuration
+
+Make sure to configure the `environment.ts` and `environment.prod.ts` files with the appropriate backend API URL.
+
