@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { BooksTableComponent } from './books-table/books-table.component';
 import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HomeComponent } from './home/home.component';
     RegistrationComponent,
     BooksTableComponent,
     HomeComponent,
+    NavbarComponent,
   ],
   imports: [
     FormsModule,

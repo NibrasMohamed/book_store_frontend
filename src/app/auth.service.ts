@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private apiUrl = environment.apiUrl;
   private user: any;
-
+  protected logedIn = false;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -23,8 +23,8 @@ export class AuthService {
   }
 
   isLoggedIn(){
-    var isLoggedIn = localStorage.getItem('token')!=null;
-    return isLoggedIn;
+    this.logedIn = localStorage.getItem('token')!=null;
+    return this.logedIn;
   }
 
   logOut(){
