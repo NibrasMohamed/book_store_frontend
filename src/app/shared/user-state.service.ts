@@ -9,20 +9,34 @@ export class UserStateService {
   constructor() { }
 
   setUser(user: any){
+    const userJSON = JSON.stringify(user);
+    localStorage.setItem('user', userJSON);
     this.user = user;
   }
 
-  getUser(){
-    console.log(this.user);
+  getUser(): any {
+    const userJSON = localStorage.getItem('user');
     
-    return this.user;
-  }
+    if (userJSON) {
+      console.log('[get user]');
+      return JSON.parse(userJSON);
+    } else {
+        return null;
+    }
+}
 
   clearUser(): void {
     this.user = null;
   }
 
   isLoggedIn(): boolean {
-    return !!this.user;
+    const user = this.getUser();
+    if (user != null) {
+      return true;
+    }else if(this.user){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

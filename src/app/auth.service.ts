@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { UserStateService } from './shared/user-state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
   protected logedIn = false;
   private loginStatusSubject: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private userStateService: UserStateService) { }
 
   login(email: string, password: string) {
     const loginData = {
@@ -36,14 +37,20 @@ export class AuthService {
   }
 
   setUSer(user: any){
+    console.log('[user]', user);
+    
     this.user = user;
     console.log('[this.user]', this.user);
     
   }
 
   getUser(): any{
-    console.log(this.user);
-    
+    if (!this.user) {
+      const userJson = this.userStateService.getUser()
+      if (userJson != null	) {
+        this.user = userJson
+      }
+    }
     return this.user
   }
 
@@ -56,8 +63,6 @@ export class AuthService {
   }
 
   getLoginStatus(): Observable<boolean> {
-    console.log( '[here]');
-    
     return this.loginStatusSubject.asObservable();
   }
 }
