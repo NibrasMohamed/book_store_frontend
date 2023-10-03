@@ -6,6 +6,7 @@ import { BookService } from '../book.service';
 import { Author } from '../author';
 import { AuthorService } from '../author.service';
 import { UserStateService } from '../shared/user-state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-form',
@@ -22,6 +23,7 @@ export class BookFormComponent{
     private fb: FormBuilder, 
     private bookService: BookService,
     private userStateService: UserStateService,
+    private router: Router
     ) {
      this.bookForm = this.fb.group({
       name: ['', Validators.required],
@@ -48,7 +50,12 @@ export class BookFormComponent{
       formData.append('cover_image', this.selectedFile || ''); // Add the selected file
 
       this.bookService.addBook(formData).subscribe(response => {
-        
+        if (response.message == 'success') {
+          alert('Book Added Successfully')
+          setTimeout(() => {
+            this.router.navigate(['home']);
+          }, 1000);
+        }
       });
     }
   }

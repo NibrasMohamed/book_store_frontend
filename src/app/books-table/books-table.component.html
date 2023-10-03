@@ -17,7 +17,7 @@
                 <td>{{ book.name }}</td>
                 <td>{{ book.published_date }}</td>
                 <td>
-                    <a [routerLink]="['/edit-book', book.id]">Edit</a>
+                    <button class="btn btn-danger" (click)="deleteBook(book.id)">Delete</button>
                 </td>
             </tr>
         </tbody>

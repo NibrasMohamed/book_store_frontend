@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'; 
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class AuthService {
   private apiUrl = environment.apiUrl;
   private user: any;
   protected logedIn = false;
+  private loginStatusSubject: Subject<boolean> = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -47,5 +49,15 @@ export class AuthService {
 
   getUserRole(): any{
     return localStorage.getItem('role');
+  }
+
+  emitLoginStatusChange(status: boolean) {
+    this.loginStatusSubject.next(status);
+  }
+
+  getLoginStatus(): Observable<boolean> {
+    console.log( '[here]');
+    
+    return this.loginStatusSubject.asObservable();
   }
 }

@@ -1,40 +1,46 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnDestroy {
   title = 'bookstore';
   isAdmin: boolean = false;
   isAuthor: boolean = false;
   isLoggedIn: boolean = false;
-  
-  constructor(private authService: AuthService, private cdr: ChangeDetectorRef){}
+  private loginStatusSubscription: Subscription;
 
-  ngOnInit(): void{
-    this.isLoggedIn = this.authService.isLoggedIn();
-    const user_role = this.authService.getUserRole();
-
-    if (this.isLoggedIn) {
-      // Check if the user has "admin" role
-      this.isAdmin = user_role=='admin'? true : false;
-      // Check if the user has "author" role
-      this.isAuthor = user_role=='author'? true : false;
-    }else{
-      this.isAdmin = false;
-      this.isAuthor = false;
-    }
-
-    this.cdr.detectChanges();
+  constructor(private authService: AuthService) {
+    // Subscribe to login status changes
+    this.loginStatusSubscription = this.authService.getLoginStatus().subscribe(status => {
+      console.log('[login status sub]');
+      
+      this.isLoggedIn = status;
+      if (this.isLoggedIn) {
+        // Update user roles when logged in
+        const userRole = this.authService.getUserRole();
+        this.isAdmin = userRole === 'admin';
+        this.isAuthor = userRole === 'author';
+      } else {
+        this.isAdmin = false;
+        this.isAuthor = false;
+      }
+    });
   }
 
-  logout(){
+  ngOnDestroy(): void {
+    this.loginStatusSubscription.unsubscribe();
+  }
+
+  logout() {
     const confirmation = confirm('Are You want to logout?')
-    if (confirmation){
+    if (confirmation) {
       this.authService.logOut()
+      this.authService.emitLoginStatusChange(false)
     };
   }
 }

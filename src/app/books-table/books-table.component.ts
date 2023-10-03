@@ -22,7 +22,7 @@ export class BooksTableComponent {
 
     
     if (this.loggedInUser && this.loggedInUser.roles.some((role: any) => role.name === 'author')) {
-      console.log('[user]', this.loggedInUser);
+      console.log('[user book]', this.loggedInUser);
       
       this.loadAuthorBooks(this.loggedInUser.id);
     }
@@ -35,6 +35,17 @@ export class BooksTableComponent {
         this.books = data.data;
       }
     });
+  }
+
+  deleteBook(bookId: number){
+    const confirmation = confirm('Are You want to Delete this Book?')
+    if (confirmation) {
+      this.bookService.deleteAuthorBook(bookId).subscribe((data: any) => {
+        if (data.status === 'success') {
+          this.loadAuthorBooks(this.loggedInUser.id);
+        }
+      })
+    };
   }
 
 }

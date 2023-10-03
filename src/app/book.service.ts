@@ -23,6 +23,10 @@ export class BookService {
   }
 
   getAuthorBooks(user_id: number): Observable<any>{
-    return this.http.get(`${this.apiUrl}/author-books/${user_id}`);
+    return this.http.get(`${this.apiUrl}books/author-books/${user_id}`);
+  }
+
+  deleteAuthorBook(book_id: number): Observable<any>{
+    return this.http.delete(`${this.apiUrl}books/${book_id}`);
   }
 }
